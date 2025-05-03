@@ -1,0 +1,179 @@
+app:
+  description: Рабочий процесс для получения информации о сделке. Инструкции и другие
+    боты на сайте https://gulin.kz
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: Gulin.kz. bitrix_deal_status
+  use_icon_as_answer_icon: false
+dependencies: []
+kind: app
+version: 0.2.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: http-request
+      id: 1746272993533-source-1746273044531-target
+      source: '1746272993533'
+      sourceHandle: source
+      target: '1746273044531'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: http-request
+        targetType: end
+      id: 1746273044531-source-1746273116421-target
+      source: '1746273044531'
+      sourceHandle: source
+      target: '1746273116421'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables:
+        - label: deal_id
+          max_length: 48
+          options: []
+          required: true
+          type: number
+          variable: deal_id
+        - label: bitrix_url
+          max_length: 250
+          options: []
+          required: true
+          type: text-input
+          variable: bitrix_url
+      height: 116
+      id: '1746272993533'
+      position:
+        x: 30
+        y: 280.5
+      positionAbsolute:
+        x: 30
+        y: 280.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: []
+          type: none
+        desc: ''
+        headers: ''
+        method: post
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP Request
+        type: http-request
+        url: '{{#1746272993533.bitrix_url#}}crm.deal.get.json?id={{#1746272993533.deal_id#}}'
+        variables: []
+      height: 161
+      id: '1746273044531'
+      position:
+        x: 334
+        y: 280.5
+      positionAbsolute:
+        x: 334
+        y: 280.5
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1746273044531'
+          - body
+          variable: body
+        selected: false
+        title: End
+        type: end
+      height: 90
+      id: '1746273116421'
+      position:
+        x: 638
+        y: 280.5
+      positionAbsolute:
+        x: 638
+        y: 280.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 44.08394169516214
+      y: -189.5668961845157
+      zoom: 1.5046488419977013
