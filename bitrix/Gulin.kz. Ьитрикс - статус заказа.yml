@@ -139,7 +139,7 @@ workflow:
             value:
               completion_params: {}
               mode: chat
-              model: gpt-4
+              model: gpt-4o-mini
               model_type: llm
               provider: langgenius/openai/openai
               type: model-selector
