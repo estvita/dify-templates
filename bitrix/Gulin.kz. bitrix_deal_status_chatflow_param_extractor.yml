@@ -246,10 +246,9 @@ workflow:
             enabled: false
             size: 50
         model:
-          completion_params:
-            temperature: 0.7
+          completion_params: {}
           mode: chat
-          name: gpt-4
+          name: gpt-4o-mini
           provider: langgenius/openai/openai
         prompt_template:
         - id: c040edcf-5233-4109-a994-7daff4a0aa03
@@ -275,7 +274,7 @@ workflow:
       positionAbsolute:
         x: 1295.1885811098095
         y: 417.2199052100595
-      selected: false
+      selected: true
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -298,7 +297,7 @@ workflow:
             temperature: 0.8
             top_p: 0.9
           mode: chat
-          name: gpt-4
+          name: gpt-4o-mini
           provider: langgenius/openai/openai
         parameters:
         - description: Номер заказа
@@ -323,7 +322,7 @@ workflow:
       positionAbsolute:
         x: 333.9999999999999
         y: 263
-      selected: true
+      selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
