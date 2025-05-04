@@ -1,0 +1,623 @@
+app:
+  description: Шаблон Битрикс бота для конструктора dify.ai , работающий с использованием
+    "извлечения параметров" из естесственного языка. Инструкции и другие боты на сайте
+    https://gulin.kz
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: Gulin.kz - Битрикс24, бот для информирвоания о статусе заказа
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:0.0.22@fa668d0ec3b434270453ede311196acaad0531ad9e3d5561cd622e6508cd3254
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/json_process:0.0.2@7afb534cc85b28a8e9c7f9410d1cfc31fb7bd3950023355a37059dbe809ac776
+kind: app
+version: 0.2.0
+workflow:
+  conversation_variables:
+  - description: ''
+    id: a8b85c3b-3ad6-4132-9bd0-0b98a657fbb6
+    name: deal_status
+    selector:
+    - conversation
+    - deal_status
+    value: '0'
+    value_type: string
+  environment_variables:
+  - description: ''
+    id: afbb9077-900c-42d8-90c0-f725cedf0e1a
+    name: bitrix_url
+    selector:
+    - env
+    - bitrix_url
+    value: ''
+    value_type: secret
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: parameter-extractor
+        targetType: if-else
+      id: 1746359786581-source-1746359818651-target
+      source: '1746359786581'
+      sourceHandle: source
+      target: '1746359818651'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: parameter-extractor
+      id: 1746357208987-source-1746359786581-target
+      source: '1746357208987'
+      sourceHandle: source
+      target: '1746359786581'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: http-request
+      id: 1746359818651-true-1746360794144-target
+      source: '1746359818651'
+      sourceHandle: 'true'
+      target: '1746360794144'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1746359818651-false-1746359678302-target
+      source: '1746359818651'
+      sourceHandle: 'false'
+      target: '1746359678302'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: assigner
+      id: 1746361180800-source-1746363058931-target
+      source: '1746361180800'
+      sourceHandle: source
+      target: '1746363058931'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: assigner
+        targetType: llm
+      id: 1746363058931-source-1746359678302-target
+      source: '1746363058931'
+      sourceHandle: source
+      target: '1746359678302'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1746359678302-source-1746359864694-target
+      source: '1746359678302'
+      sourceHandle: source
+      target: '1746359864694'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: if-else
+      id: 1746360794144-source-1746363924427-target
+      source: '1746360794144'
+      sourceHandle: source
+      target: '1746363924427'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: 1746363924427-true-1746361180800-target
+      source: '1746363924427'
+      sourceHandle: 'true'
+      target: '1746361180800'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: assigner
+      id: 1746363924427-false-1746363979053-target
+      source: '1746363924427'
+      sourceHandle: 'false'
+      target: '1746363979053'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: assigner
+        targetType: llm
+      id: 1746363979053-source-1746359678302-target
+      source: '1746363979053'
+      sourceHandle: source
+      target: '1746359678302'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables: []
+      height: 54
+      id: '1746357208987'
+      position:
+        x: 340.1475007251519
+        y: 455.85714285714283
+      positionAbsolute:
+        x: 340.1475007251519
+        y: 455.85714285714283
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - conversation
+          - deal_status
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+            '
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: c040edcf-5233-4109-a994-7daff4a0aa03
+          role: system
+          text: 'Бот для информирования клиентов о статусе заказов. Запроси у клиента
+            номер заказа если статус заказа неизвестен, если статус заказа известен
+            (то есть не равен 0), то сообщи пользователю статус заказа человеческим
+            языком.
+
+            Статус заказа = {{#context#}}'
+        selected: false
+        structured_output_enabled: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1746359678302'
+      position:
+        x: 1295.1885811098095
+        y: 417.2199052100595
+      positionAbsolute:
+        x: 1295.1885811098095
+        y: 417.2199052100595
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        instruction: Извлеки из текста номер заказа
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 20
+        model:
+          completion_params:
+            frequency_penalty: 0.1
+            presence_penalty: 0.1
+            temperature: 0.8
+            top_p: 0.9
+          mode: chat
+          name: gpt-4
+          provider: langgenius/openai/openai
+        parameters:
+        - description: Номер заказа
+          name: deal_id
+          required: true
+          type: number
+        query:
+        - sys
+        - query
+        reasoning_mode: prompt
+        selected: false
+        title: Parameter Extractor
+        type: parameter-extractor
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1746359786581'
+      position:
+        x: 333.9999999999999
+        y: 263
+      positionAbsolute:
+        x: 333.9999999999999
+        y: 263
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: '='
+            id: 2f76e246-4bcd-4cb6-bd17-f42b091ae1cc
+            numberVarType: constant
+            value: '1'
+            varType: number
+            variable_selector:
+            - '1746359786581'
+            - __is_success
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: IF/ELSE
+        type: if-else
+      height: 126
+      id: '1746359818651'
+      position:
+        x: 638
+        y: 263
+      positionAbsolute:
+        x: 638
+        y: 263
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1746359678302.text#}}'
+        desc: ''
+        selected: false
+        title: Answer 1
+        type: answer
+        variables: []
+      height: 104
+      id: '1746359864694'
+      position:
+        x: 1620.5370537379213
+        y: 417.2199052100595
+      positionAbsolute:
+        x: 1620.5370537379213
+        y: 417.2199052100595
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: []
+          type: none
+        desc: ''
+        headers: ''
+        method: get
+        params: id:{{#1746359786581.deal_id#}}
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP Request
+        type: http-request
+        url: '{{#env.bitrix_url#}}crm.deal.get.json'
+        variables: []
+      height: 126
+      id: '1746360794144'
+      position:
+        x: 638
+        y: 455.85714285714283
+      positionAbsolute:
+        x: 638
+        y: 455.85714285714283
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: JSON data
+            ja_JP: JSON data
+            pt_BR: JSON数据
+            zh_Hans: JSON数据
+          label:
+            en_US: JSON data
+            ja_JP: JSON data
+            pt_BR: JSON data
+            zh_Hans: JSON数据
+          llm_description: JSON data to be processed
+          max: null
+          min: null
+          name: content
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: JSON fields to be parsed
+            ja_JP: JSON fields to be parsed
+            pt_BR: JSON fields to be parsed
+            zh_Hans: 需要解析的 JSON 字段
+          label:
+            en_US: JSON filter
+            ja_JP: JSON filter
+            pt_BR: JSON filter
+            zh_Hans: JSON解析对象
+          llm_description: JSON fields to be parsed
+          max: null
+          min: null
+          name: json_filter
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: 1
+          form: form
+          human_description:
+            en_US: Ensure the JSON output is ASCII encoded
+            ja_JP: Ensure the JSON output is ASCII encoded
+            pt_BR: Ensure the JSON output is ASCII encoded
+            zh_Hans: 确保输出的 JSON 是 ASCII 编码
+          label:
+            en_US: Ensure ASCII
+            ja_JP: Ensure ASCII
+            pt_BR: Ensure ASCII
+            zh_Hans: 确保 ASCII
+          llm_description: ''
+          max: null
+          min: null
+          name: ensure_ascii
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: boolean
+        params:
+          content: ''
+          ensure_ascii: ''
+          json_filter: ''
+        provider_id: langgenius/json_process/json_process
+        provider_name: langgenius/json_process/json_process
+        provider_type: builtin
+        selected: false
+        title: JSON Parse
+        tool_configurations:
+          ensure_ascii: 1
+        tool_description: A tool for extracting JSON objects
+        tool_label: JSON Parse
+        tool_name: parse
+        tool_parameters:
+          content:
+            type: mixed
+            value: '{{#1746360794144.body#}}'
+          json_filter:
+            type: mixed
+            value: result.STAGE_ID
+        type: tool
+      height: 90
+      id: '1746361180800'
+      position:
+        x: 638
+        y: 855.6774719533814
+      positionAbsolute:
+        x: 638
+        y: 855.6774719533814
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1746361180800'
+          - text
+          variable_selector:
+          - conversation
+          - deal_status
+          write_mode: over-write
+        selected: false
+        title: Variable Assigner
+        type: assigner
+        version: '2'
+      height: 88
+      id: '1746363058931'
+      position:
+        x: 973.2654899026518
+        y: 855.6774719533814
+      positionAbsolute:
+        x: 973.2654899026518
+        y: 855.6774719533814
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: '='
+            id: 6731ac06-7c00-4499-97f1-4fb643c2558a
+            value: '200'
+            varType: number
+            variable_selector:
+            - '1746360794144'
+            - status_code
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: IF/ELSE 2
+        type: if-else
+      height: 126
+      id: '1746363924427'
+      position:
+        x: 638
+        y: 651.7283936246929
+      positionAbsolute:
+        x: 638
+        y: 651.7283936246929
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1746360794144'
+          - body
+          variable_selector:
+          - conversation
+          - deal_status
+          write_mode: over-write
+        selected: false
+        title: Variable Assigner 2
+        type: assigner
+        version: '2'
+      height: 88
+      id: '1746363979053'
+      position:
+        x: 973.2654899026518
+        y: 651.7283936246929
+      positionAbsolute:
+        x: 973.2654899026518
+        y: 651.7283936246929
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -178.1771655282314
+      y: -56.909017196057675
+      zoom: 0.768437590644006
