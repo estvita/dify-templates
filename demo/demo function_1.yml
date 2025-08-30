@@ -1,0 +1,623 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: demo function
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:0.2.3@5a7f82fa86e28332ad51941d0b491c1e8a38ead539656442f7bf4c6129cd15fa
+kind: app
+version: 0.3.1
+workflow:
+  conversation_variables: []
+  environment_variables:
+  - description: ''
+    id: 605d6c73-16e3-4cbf-933f-4a99bdc00e96
+    name: response
+    selector:
+    - env
+    - response
+    value: There are currently no actions for this function
+    value_type: string
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: if-else
+      id: 1746509618711-source-1746509700773-target
+      source: '1746509618711'
+      sourceHandle: source
+      target: '1746509700773'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: tool
+      id: 1746509700773-true-1746509786563-target
+      source: '1746509700773'
+      sourceHandle: 'true'
+      target: '1746509786563'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: end
+      id: 1746509786563-source-1746510019591-target
+      source: '1746509786563'
+      sourceHandle: source
+      target: '1746510019591'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: end
+      id: 1746509700773-false-1746510179293-target
+      source: '1746509700773'
+      sourceHandle: 'false'
+      target: '1746510179293'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1746509700773-0419a9e1-6260-4ec0-b8ac-809e6f53dc55-1756545656430-target
+      source: '1746509700773'
+      sourceHandle: 0419a9e1-6260-4ec0-b8ac-809e6f53dc55
+      target: '1756545656430'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1756545656430-source-1756545706107-target
+      source: '1756545656430'
+      sourceHandle: source
+      target: '1756545706107'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1746509700773-21718658-9989-4048-a3f9-e59574f36a3a-1756547751541-target
+      source: '1746509700773'
+      sourceHandle: 21718658-9989-4048-a3f9-e59574f36a3a
+      target: '1756547751541'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1756547751541-source-1756548021261-target
+      source: '1756547751541'
+      sourceHandle: source
+      target: '1756548021261'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables:
+        - label: function_name
+          max_length: 48
+          options: []
+          required: false
+          type: text-input
+          variable: function_name
+        - label: number1
+          max_length: 48
+          options: []
+          required: false
+          type: number
+          variable: number1
+        - label: number2
+          max_length: 48
+          options: []
+          required: false
+          type: number
+          variable: number2
+        - label: anything
+          max_length: 48
+          options: []
+          required: false
+          type: text-input
+          variable: anything
+      height: 168
+      id: '1746509618711'
+      position:
+        x: 28.571428571428555
+        y: 263
+      positionAbsolute:
+        x: 28.571428571428555
+        y: 263
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: 55256189-1f54-4911-a70c-d149e285ce05
+            value: get_time
+            varType: string
+            variable_selector:
+            - '1746509618711'
+            - function_name
+          id: 'true'
+          logical_operator: and
+        - case_id: 0419a9e1-6260-4ec0-b8ac-809e6f53dc55
+          conditions:
+          - comparison_operator: contains
+            id: b4146e32-ef35-469e-9de6-e40a3eb9b175
+            value: two_numbers
+            varType: string
+            variable_selector:
+            - '1746509618711'
+            - function_name
+          id: 0419a9e1-6260-4ec0-b8ac-809e6f53dc55
+          logical_operator: and
+        - case_id: 21718658-9989-4048-a3f9-e59574f36a3a
+          conditions:
+          - comparison_operator: not empty
+            id: 0903b7b1-f6ce-493b-aa03-14f6d4cbeff4
+            value: ''
+            varType: string
+            variable_selector:
+            - '1746509618711'
+            - anything
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: IF/ELSE
+        type: if-else
+      height: 222
+      id: '1746509700773'
+      position:
+        x: 334
+        y: 263
+      positionAbsolute:
+        x: 334
+        y: 263
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: '%Y-%m-%d %H:%M:%S'
+          form: form
+          human_description:
+            en_US: Time format in strftime standard.
+            ja_JP: Time format in strftime standard.
+            pt_BR: Time format in strftime standard.
+            zh_Hans: strftime 标准的时间格式。
+          label:
+            en_US: Format
+            ja_JP: Format
+            pt_BR: Format
+            zh_Hans: 格式
+          llm_description: null
+          max: null
+          min: null
+          name: format
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: UTC
+          form: form
+          human_description:
+            en_US: Timezone
+            ja_JP: Timezone
+            pt_BR: Timezone
+            zh_Hans: 时区
+          label:
+            en_US: Timezone
+            ja_JP: Timezone
+            pt_BR: Timezone
+            zh_Hans: 时区
+          llm_description: null
+          max: null
+          min: null
+          name: timezone
+          options:
+          - label:
+              en_US: UTC
+              ja_JP: UTC
+              pt_BR: UTC
+              zh_Hans: UTC
+            value: UTC
+          - label:
+              en_US: America/New_York
+              ja_JP: America/New_York
+              pt_BR: America/New_York
+              zh_Hans: 美洲/纽约
+            value: America/New_York
+          - label:
+              en_US: America/Los_Angeles
+              ja_JP: America/Los_Angeles
+              pt_BR: America/Los_Angeles
+              zh_Hans: 美洲/洛杉矶
+            value: America/Los_Angeles
+          - label:
+              en_US: America/Chicago
+              ja_JP: America/Chicago
+              pt_BR: America/Chicago
+              zh_Hans: 美洲/芝加哥
+            value: America/Chicago
+          - label:
+              en_US: America/Sao_Paulo
+              ja_JP: America/Sao_Paulo
+              pt_BR: América/São Paulo
+              zh_Hans: 美洲/圣保罗
+            value: America/Sao_Paulo
+          - label:
+              en_US: Asia/Shanghai
+              ja_JP: Asia/Shanghai
+              pt_BR: Asia/Shanghai
+              zh_Hans: 亚洲/上海
+            value: Asia/Shanghai
+          - label:
+              en_US: Asia/Ho_Chi_Minh
+              ja_JP: Asia/Ho_Chi_Minh
+              pt_BR: Ásia/Ho Chi Minh
+              zh_Hans: 亚洲/胡志明市
+            value: Asia/Ho_Chi_Minh
+          - label:
+              en_US: Asia/Tokyo
+              ja_JP: Asia/Tokyo
+              pt_BR: Asia/Tokyo
+              zh_Hans: 亚洲/东京
+            value: Asia/Tokyo
+          - label:
+              en_US: Asia/Dubai
+              ja_JP: Asia/Dubai
+              pt_BR: Asia/Dubai
+              zh_Hans: 亚洲/迪拜
+            value: Asia/Dubai
+          - label:
+              en_US: Asia/Kolkata
+              ja_JP: Asia/Kolkata
+              pt_BR: Asia/Kolkata
+              zh_Hans: 亚洲/加尔各答
+            value: Asia/Kolkata
+          - label:
+              en_US: Asia/Seoul
+              ja_JP: Asia/Seoul
+              pt_BR: Asia/Seoul
+              zh_Hans: 亚洲/首尔
+            value: Asia/Seoul
+          - label:
+              en_US: Asia/Singapore
+              ja_JP: Asia/Singapore
+              pt_BR: Asia/Singapore
+              zh_Hans: 亚洲/新加坡
+            value: Asia/Singapore
+          - label:
+              en_US: Europe/London
+              ja_JP: Europe/London
+              pt_BR: Europe/London
+              zh_Hans: 欧洲/伦敦
+            value: Europe/London
+          - label:
+              en_US: Europe/Berlin
+              ja_JP: Europe/Berlin
+              pt_BR: Europe/Berlin
+              zh_Hans: 欧洲/柏林
+            value: Europe/Berlin
+          - label:
+              en_US: Europe/Moscow
+              ja_JP: Europe/Moscow
+              pt_BR: Europe/Moscow
+              zh_Hans: 欧洲/莫斯科
+            value: Europe/Moscow
+          - label:
+              en_US: Australia/Sydney
+              ja_JP: Australia/Sydney
+              pt_BR: Australia/Sydney
+              zh_Hans: 澳大利亚/悉尼
+            value: Australia/Sydney
+          - label:
+              en_US: Pacific/Auckland
+              ja_JP: Pacific/Auckland
+              pt_BR: Pacific/Auckland
+              zh_Hans: 太平洋/奥克兰
+            value: Pacific/Auckland
+          - label:
+              en_US: Africa/Cairo
+              ja_JP: Africa/Cairo
+              pt_BR: Africa/Cairo
+              zh_Hans: 非洲/开罗
+            value: Africa/Cairo
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        params:
+          format: ''
+          timezone: ''
+        provider_id: time
+        provider_name: time
+        provider_type: builtin
+        selected: false
+        title: Current Time
+        tool_configurations:
+          format:
+            type: constant
+            value: '%Y-%m-%d %H:%M:%S'
+          timezone:
+            type: constant
+            value: Europe/London
+        tool_description: A tool for getting the current time.
+        tool_label: Current Time
+        tool_name: current_time
+        tool_node_version: '2'
+        tool_parameters: {}
+        type: tool
+      height: 116
+      id: '1746509786563'
+      position:
+        x: 693.3760929353315
+        y: 53.75218587066267
+      positionAbsolute:
+        x: 693.3760929353315
+        y: 53.75218587066267
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1746509786563'
+          - text
+          variable: text
+        selected: false
+        title: End
+        type: end
+      height: 90
+      id: '1746510019591'
+      position:
+        x: 1083.7655030930296
+        y: -34.27318745957479
+      positionAbsolute:
+        x: 1083.7655030930296
+        y: -34.27318745957479
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - env
+          - response
+          variable: text
+        selected: false
+        title: End 2
+        type: end
+      height: 90
+      id: '1746510179293'
+      position:
+        x: 729.1689279026795
+        y: 710.2634143648047
+      positionAbsolute:
+        x: 729.1689279026795
+        y: 710.2634143648047
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: f16649fd-01a3-4862-ba6a-c680a311a147
+          role: system
+          text: произведи операцию сложения между {{#1746509618711.number1#}} и {{#1746509618711.number2#}}
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1756545656430'
+      position:
+        x: 712.2696394752203
+        y: 285.92915982640767
+      positionAbsolute:
+        x: 712.2696394752203
+        y: 285.92915982640767
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1756545656430'
+          - text
+          value_type: string
+          variable: text
+        selected: false
+        title: End 3
+        type: end
+      height: 90
+      id: '1756545706107'
+      position:
+        x: 1069.280398726636
+        y: 302.8284482538669
+      positionAbsolute:
+        x: 1069.280398726636
+        y: 302.8284482538669
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1746509618711'
+          - anything
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 60f752f6-ddaa-4500-81c1-bf91fb73b73b
+          role: system
+          text: дай ответ на запрос {{#1746509618711.anything#}}
+        selected: false
+        title: LLM 2
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1756547751541'
+      position:
+        x: 729.1689279026795
+        y: 476.3310771846093
+      positionAbsolute:
+        x: 729.1689279026795
+        y: 476.3310771846093
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1756547751541'
+          - text
+          value_type: string
+          variable: text
+        selected: true
+        title: End 4
+        type: end
+      height: 90
+      id: '1756548021261'
+      position:
+        x: 1033.1689279026796
+        y: 476.3310771846093
+      positionAbsolute:
+        x: 1033.1689279026796
+        y: 476.3310771846093
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -575.9756292557374
+      y: -157.5657292184368
+      zoom: 1.2426558721772956
