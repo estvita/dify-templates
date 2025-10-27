@@ -5,7 +5,11 @@ app:
   mode: workflow
   name: demo function
   use_icon_as_answer_icon: false
-dependencies: []
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:0.0.22@fa668d0ec3b434270453ede311196acaad0531ad9e3d5561cd622e6508cd3254
 kind: app
 version: 0.2.0
 workflow:
@@ -111,6 +115,30 @@ workflow:
       targetHandle: target
       type: custom
       zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1746509700773-1c25f2a3-2d13-4e45-88f1-442d80612ecd-1746596365190-target
+      source: '1746509700773'
+      sourceHandle: 1c25f2a3-2d13-4e45-88f1-442d80612ecd
+      target: '1746596365190'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1746596365190-source-1746596452701-target
+      source: '1746596365190'
+      sourceHandle: source
+      target: '1746596452701'
+      targetHandle: target
+      type: custom
+      zIndex: 0
     nodes:
     - data:
         desc: ''
@@ -124,7 +152,19 @@ workflow:
           required: true
           type: text-input
           variable: function_name
-      height: 90
+        - label: number1
+          max_length: 48
+          options: []
+          required: false
+          type: number
+          variable: number1
+        - label: number2
+          max_length: 48
+          options: []
+          required: false
+          type: number
+          variable: number2
+      height: 142
       id: '1746509618711'
       position:
         x: 30
@@ -150,11 +190,22 @@ workflow:
             - function_name
           id: 'true'
           logical_operator: and
+        - case_id: 1c25f2a3-2d13-4e45-88f1-442d80612ecd
+          conditions:
+          - comparison_operator: contains
+            id: 01619dcd-1871-4d4a-b8be-3fbc0bd5333c
+            value: two_numbers
+            varType: string
+            variable_selector:
+            - '1746509618711'
+            - function_name
+          id: 1c25f2a3-2d13-4e45-88f1-442d80612ecd
+          logical_operator: and
         desc: ''
         selected: true
         title: IF/ELSE
         type: if-else
-      height: 126
+      height: 174
       id: '1746509700773'
       position:
         x: 334
@@ -162,7 +213,7 @@ workflow:
       positionAbsolute:
         x: 334
         y: 263
-      selected: true
+      selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -347,11 +398,11 @@ workflow:
       height: 116
       id: '1746509786563'
       position:
-        x: 729.4285714285717
-        y: 125.85714285714292
+        x: 720.857142857143
+        y: 50.14285714285714
       positionAbsolute:
-        x: 729.4285714285717
-        y: 125.85714285714292
+        x: 720.857142857143
+        y: 50.14285714285714
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -370,11 +421,11 @@ workflow:
       height: 90
       id: '1746510019591'
       position:
-        x: 1085.7142857142858
-        y: 140.14285714285714
+        x: 1114.2857142857144
+        y: 50.14285714285714
       positionAbsolute:
-        x: 1085.7142857142858
-        y: 140.14285714285714
+        x: 1114.2857142857144
+        y: 50.14285714285714
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -393,17 +444,74 @@ workflow:
       height: 90
       id: '1746510179293'
       position:
-        x: 755.1428571428572
-        y: 415.14285714285717
+        x: 720.857142857143
+        y: 692.2857142857143
       positionAbsolute:
-        x: 755.1428571428572
-        y: 415.14285714285717
+        x: 720.857142857143
+        y: 692.2857142857143
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 07a7bc6d-c7a2-46db-899f-c88dc7e45947
+          role: system
+          text: умножь эти числа {{#1746509618711.number1#}} и {{#1746509618711.number2#}}
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1746596365190'
+      position:
+        x: 728.0000000000003
+        y: 341.2857142857142
+      positionAbsolute:
+        x: 728.0000000000003
+        y: 341.2857142857142
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1746596365190'
+          - text
+          variable: text
+        selected: false
+        title: End 3
+        type: end
+      height: 90
+      id: '1746596452701'
+      position:
+        x: 1094.285714285714
+        y: 341.2857142857142
+      positionAbsolute:
+        x: 1094.285714285714
+        y: 341.2857142857142
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 244
     viewport:
-      x: 87.99999999999977
-      y: 54.00000000000006
+      x: 68.99999999999989
+      y: 80.00000000000006
       zoom: 0.7

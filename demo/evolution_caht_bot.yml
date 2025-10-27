@@ -1,0 +1,804 @@
+app:
+  description: 'A template for creating a bot for the Evolution API.
+
+    The bot understands text and voice messages.'
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: caht_bot
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:0.2.6@e2665624a156f52160927bceac9e169bd7e5ae6b936ae82575e14c90af390e6e
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/json_process:0.0.2@dde6d7b676ccdcea89206d29232181a840170c19277d3d978e27cd1e3c92c707
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: bowenliang123/base64_codec:0.4.0@886cc78123c7d3f32f2f836ae2926bd8a6a0a93cb21f72409f8ca01c9d0104bd
+    version: null
+kind: app
+version: 0.4.0
+workflow:
+  conversation_variables:
+  - description: ''
+    id: 0e59a00d-8ac1-4bad-9d23-d7d7b16a6e6b
+    name: query
+    selector:
+    - conversation
+    - query
+    value: .
+    value_type: string
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: if-else
+      id: 1761562777608-source-1761571730061-target
+      selected: false
+      source: '1761562777608'
+      sourceHandle: source
+      target: '1761571730061'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: code
+      id: 1761571730061-true-1761571080414-target
+      selected: false
+      source: '1761571730061'
+      sourceHandle: 'true'
+      target: '1761571080414'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: http-request
+      id: 1761571080414-source-1761569534440-target
+      selected: false
+      source: '1761571080414'
+      sourceHandle: source
+      target: '1761569534440'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: tool
+      id: 1761569534440-source-1761572962620-target
+      selected: false
+      source: '1761569534440'
+      sourceHandle: source
+      target: '1761572962620'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: tool
+      id: 1761572962620-source-1761573190943-target
+      selected: false
+      source: '1761572962620'
+      sourceHandle: source
+      target: '1761573190943'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: tool
+      id: 1761573190943-source-1761573914793-target
+      selected: false
+      source: '1761573190943'
+      sourceHandle: source
+      target: '1761573914793'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1761573976191-source-answer-target
+      selected: false
+      source: '1761573976191'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: assigner
+      id: 1761573914793-source-1761575318503-target
+      source: '1761573914793'
+      sourceHandle: source
+      target: '1761575318503'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: assigner
+        targetType: llm
+      id: 1761575318503-source-1761573976191-target
+      source: '1761575318503'
+      sourceHandle: source
+      target: '1761573976191'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: assigner
+      id: 1761571730061-false-1761575573005-target
+      source: '1761571730061'
+      sourceHandle: 'false'
+      target: '1761575573005'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: assigner
+        targetType: llm
+      id: 1761575573005-source-1761573976191-target
+      source: '1761575573005'
+      sourceHandle: source
+      target: '1761573976191'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: Start
+        type: start
+        variables:
+        - default: ''
+          hint: ''
+          label: instanceName
+          max_length: 48
+          options: []
+          placeholder: ''
+          required: false
+          type: text-input
+          variable: instanceName
+        - default: ''
+          hint: ''
+          label: serverUrl
+          max_length: 48
+          options: []
+          placeholder: ''
+          required: false
+          type: text-input
+          variable: serverUrl
+        - default: ''
+          hint: ''
+          label: apiKey
+          max_length: 48
+          options: []
+          placeholder: ''
+          required: false
+          type: text-input
+          variable: apiKey
+      height: 140
+      id: '1761562777608'
+      position:
+        x: 3.253238456994609
+        y: 435.6190537590542
+      positionAbsolute:
+        x: 3.253238456994609
+        y: 435.6190537590542
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '{{#1761573976191.text#}}'
+        selected: false
+        title: Answer
+        type: answer
+        variables: []
+      height: 103
+      id: answer
+      position:
+        x: 1876.5775580953486
+        y: 435.6190537590542
+      positionAbsolute:
+        x: 1876.5775580953486
+        y: 435.6190537590542
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - id: key-value-213
+            key: ''
+            type: text
+            value: "{\n  \"message\": {\n    \"key\": {\n      \"id\": {{#1761571080414.result#}}\n\
+              \    }\n  }\n}"
+          type: json
+        headers: 'Content-Type:application/json
+
+          apikey:{{#1761562777608.apiKey#}}'
+        method: post
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP Request
+        type: http-request
+        url: '{{#1761562777608.serverUrl#}}/chat/getBase64FromMediaMessage/{{#1761562777608.instanceName#}}'
+        variables: []
+      height: 159
+      id: '1761569534440'
+      position:
+        x: 1099.4968703357665
+        y: -2.286672792164012
+      positionAbsolute:
+        x: 1099.4968703357665
+        y: -2.286672792164012
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "def main(arg1: str):\n    return {\n        \"result\": arg1.split('|')[1],\n\
+          \    }\n"
+        code_language: python3
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: Code
+        type: code
+        variables:
+        - value_selector:
+          - sys
+          - query
+          value_type: string
+          variable: arg1
+      height: 52
+      id: '1761571080414'
+      position:
+        x: 768.7967347815768
+        y: 131.43693115694398
+      positionAbsolute:
+        x: 768.7967347815768
+        y: 131.43693115694398
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: 0b239137-7b1e-4fd7-a421-fb9bd6f15841
+            value: audioMessage|
+            varType: string
+            variable_selector:
+            - sys
+            - query
+          id: 'true'
+          logical_operator: or
+        selected: false
+        title: IF/ELSE
+        type: if-else
+      height: 124
+      id: '1761571730061'
+      position:
+        x: 478.98208478278514
+        y: 435.6190537590542
+      positionAbsolute:
+        x: 478.98208478278514
+        y: 435.6190537590542
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: JSON data
+            ja_JP: JSON data
+            pt_BR: JSON数据
+            zh_Hans: JSON数据
+          label:
+            en_US: JSON data
+            ja_JP: JSON data
+            pt_BR: JSON data
+            zh_Hans: JSON数据
+          llm_description: JSON data to be processed
+          max: null
+          min: null
+          name: content
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: JSON fields to be parsed
+            ja_JP: JSON fields to be parsed
+            pt_BR: JSON fields to be parsed
+            zh_Hans: 需要解析的 JSON 字段
+          label:
+            en_US: JSON filter
+            ja_JP: JSON filter
+            pt_BR: JSON filter
+            zh_Hans: JSON解析对象
+          llm_description: JSON fields to be parsed
+          max: null
+          min: null
+          name: json_filter
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: 1
+          form: form
+          human_description:
+            en_US: Ensure the JSON output is ASCII encoded
+            ja_JP: Ensure the JSON output is ASCII encoded
+            pt_BR: Ensure the JSON output is ASCII encoded
+            zh_Hans: 确保输出的 JSON 是 ASCII 编码
+          label:
+            en_US: Ensure ASCII
+            ja_JP: Ensure ASCII
+            pt_BR: Ensure ASCII
+            zh_Hans: 确保 ASCII
+          llm_description: ''
+          max: null
+          min: null
+          name: ensure_ascii
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: boolean
+        params:
+          content: ''
+          ensure_ascii: ''
+          json_filter: ''
+        provider_id: langgenius/json_process/json_process
+        provider_name: langgenius/json_process/json_process
+        provider_type: builtin
+        selected: false
+        title: JSON Parse
+        tool_configurations:
+          ensure_ascii:
+            type: constant
+            value: 1
+        tool_description: A tool for extracting JSON objects
+        tool_label: JSON Parse
+        tool_name: parse
+        tool_node_version: '2'
+        tool_parameters:
+          content:
+            type: mixed
+            value: '{{#1761569534440.body#}}'
+          json_filter:
+            type: mixed
+            value: base64
+        type: tool
+      height: 88
+      id: '1761572962620'
+      position:
+        x: 1104.2209355686564
+        y: 246.7634257676891
+      positionAbsolute:
+        x: 1104.2209355686564
+        y: 246.7634257676891
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Base64 encoded file string
+            ja_JP: Base64 encoded file string
+            pt_BR: Base64 encoded file string
+            zh_Hans: Base64 编码的文件字符串
+          label:
+            en_US: Base64 encoded Text
+            ja_JP: Base64 encoded Text
+            pt_BR: Base64 encoded Text
+            zh_Hans: 已 Base64 编码的文件字符串
+          llm_description: A tool for decoding Base64-encoded text to file file
+          max: null
+          min: null
+          name: encoded_text
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Filename of the output file
+            ja_JP: Filename of the output file
+            pt_BR: Filename of the output file
+            zh_Hans: 输出文件名
+          label:
+            en_US: Filename of the output file
+            ja_JP: Filename of the output file
+            pt_BR: Filename of the output file
+            zh_Hans: 输出文件名
+          llm_description: ''
+          max: null
+          min: null
+          name: output_filename
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          encoded_text: ''
+          output_filename: ''
+        provider_id: bowenliang123/base64_codec/base64_codec
+        provider_name: bowenliang123/base64_codec/base64_codec
+        provider_type: builtin
+        selected: false
+        title: Base64 Text to File
+        tool_configurations: {}
+        tool_description: Decode Base64-encoded text to a binary file
+        tool_label: Base64 Text to File
+        tool_name: base64_file_decoder
+        tool_node_version: '2'
+        tool_parameters:
+          encoded_text:
+            type: mixed
+            value: '{{#1761572962620.text#}}'
+          output_filename:
+            type: mixed
+            value: ''
+        type: tool
+      height: 52
+      id: '1761573190943'
+      position:
+        x: 1099.4968703357665
+        y: 435.6190537590542
+      positionAbsolute:
+        x: 1099.4968703357665
+        y: 435.6190537590542
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: The audio file to be converted.
+            ja_JP: The audio file to be converted.
+            pt_BR: The audio file to be converted.
+            zh_Hans: 要转换的音频文件。
+          label:
+            en_US: Audio File
+            ja_JP: Audio File
+            pt_BR: Audio File
+            zh_Hans: 音频文件
+          llm_description: The audio file to be converted.
+          max: null
+          min: null
+          name: audio_file
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: file
+        - auto_generate: null
+          default: null
+          form: form
+          human_description:
+            en_US: All available ASR models. You can config model in the Model Provider
+              of Settings.
+            ja_JP: All available ASR models. You can config model in the Model Provider
+              of Settings.
+            pt_BR: All available ASR models. You can config model in the Model Provider
+              of Settings.
+            zh_Hans: 所有可用的 ASR 模型。你可以在设置中的模型供应商里配置。
+          label:
+            en_US: Model
+            ja_JP: Model
+            pt_BR: Model
+            zh_Hans: Model
+          llm_description: null
+          max: null
+          min: null
+          name: model
+          options:
+          - icon: null
+            label:
+              en_US: gpt-4o-mini-transcribe(langgenius/openai/openai)
+              ja_JP: gpt-4o-mini-transcribe(langgenius/openai/openai)
+              pt_BR: gpt-4o-mini-transcribe(langgenius/openai/openai)
+              zh_Hans: gpt-4o-mini-transcribe(langgenius/openai/openai)
+            value: langgenius/openai/openai#gpt-4o-mini-transcribe
+          - icon: null
+            label:
+              en_US: gpt-4o-transcribe(langgenius/openai/openai)
+              ja_JP: gpt-4o-transcribe(langgenius/openai/openai)
+              pt_BR: gpt-4o-transcribe(langgenius/openai/openai)
+              zh_Hans: gpt-4o-transcribe(langgenius/openai/openai)
+            value: langgenius/openai/openai#gpt-4o-transcribe
+          - icon: null
+            label:
+              en_US: whisper-1(langgenius/openai/openai)
+              ja_JP: whisper-1(langgenius/openai/openai)
+              pt_BR: whisper-1(langgenius/openai/openai)
+              zh_Hans: whisper-1(langgenius/openai/openai)
+            value: langgenius/openai/openai#whisper-1
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: select
+        params:
+          audio_file: ''
+          model: ''
+        provider_id: audio
+        provider_name: audio
+        provider_type: builtin
+        selected: false
+        title: Speech To Text
+        tool_configurations:
+          model:
+            type: constant
+            value: langgenius/openai/openai#whisper-1
+        tool_description: Convert audio file to text.
+        tool_label: Speech To Text
+        tool_name: asr
+        tool_node_version: '2'
+        tool_parameters:
+          audio_file:
+            type: variable
+            value:
+            - '1761573190943'
+            - files
+        type: tool
+      height: 88
+      id: '1761573914793'
+      position:
+        x: 1411.843893904637
+        y: -2.286672792164012
+      positionAbsolute:
+        x: 1411.843893904637
+        y: -2.286672792164012
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 588bde50-de7c-41e4-93a9-4af53344c7e5
+          role: system
+          text: "Ты бот для консультаций по услугам Гулина Антона\nСайт gulin.kz\n\
+            Услуги\n1. Внедрение, модернизация и интеграция IP телефонии на базе asterisk\
+            \ и OpenSips\n2. Разработка приложения для Битрикс24 - ссылка на маркет\
+            \ https://www.bitrix24.kz/apps/partner/19913664/\n3. Официальный провайдер\
+            \ Whatsapp Cloud - решения для звонков и сообщений через официальный API\
+            \ \n4. Проект separator.biz (платформа для интеграции мессенджеров с битрикс24)\
+            \ доступна на github для свободного использования https://github.com/estvita/separator"
+        - id: c7655b2f-5301-4922-be40-1d6078d868fb
+          role: user
+          text: '{{#conversation.query#}}'
+        selected: true
+        title: LLM
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: '1761573976191'
+      position:
+        x: 1463.9876636352365
+        y: 628.6700679148329
+      positionAbsolute:
+        x: 1463.9876636352365
+        y: 628.6700679148329
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1761573914793'
+          - text
+          variable_selector:
+          - conversation
+          - query
+          write_mode: over-write
+        selected: false
+        title: Variable Assigner
+        type: assigner
+        version: '2'
+      height: 84
+      id: '1761575318503'
+      position:
+        x: 1423.3169284850335
+        y: 246.7634257676891
+      positionAbsolute:
+        x: 1423.3169284850335
+        y: 246.7634257676891
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - sys
+          - query
+          variable_selector:
+          - conversation
+          - query
+          write_mode: over-write
+        selected: false
+        title: Variable Assigner 2
+        type: assigner
+        version: '2'
+      height: 84
+      id: '1761575573005'
+      position:
+        x: 1104.2209355686564
+        y: 628.6700679148329
+      positionAbsolute:
+        x: 1104.2209355686564
+        y: 628.6700679148329
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    viewport:
+      x: -142.04580904505247
+      y: 160.3269973336154
+      zoom: 0.6506709277209662
+  rag_pipeline_variables: []
